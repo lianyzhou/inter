@@ -1,5 +1,18 @@
 <script src="jquery.js"></script>
 <script src="inter.js"></script>
 <script>
+(function($) {
+	
+	var inter = $.inter();
+	inter.register('books' , {url : '/books' , timeout : 3000});
+	
+	inter.getTrans('books').request({
+		a : 1
+	}).success(function(json) {
+		console.log(json);
+	}).error(function(xhr, code , errText) {
+		console.dir(errText);
+	});
 
+})(jQuery);
 </script>

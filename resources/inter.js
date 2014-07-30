@@ -35,18 +35,7 @@
 		return that;
 	};
 	
-	var inter = $.inter();
 	
-	inter.register('books' , {url : '/books' , timeout : 3000});
-	
-	var trans = inter.getTrans('books');
-	trans.request({
-		a : 1
-	}).success(function(json) {
-		console.log(json);
-	}).error(function(xhr, code , errText) {
-		console.dir(errText);
-	});
 	
 	
 })(jQuery);
