@@ -1,0 +1,25 @@
+{
+  "name": "inter",
+  "version": "0.0.1",
+  "description": "simple ajax manipulation method",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lianyzhou/inter"
+  },
+  "keywords": [
+    "ajax",
+    "manipulation"
+  ],
+  "author": "lianyzhou",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/lianyzhou/inter/issues"
+  },
+  "dependencies":{
+     "express" : "3.2.6"
+  }
+}
