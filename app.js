@@ -16,16 +16,30 @@ app.use(app.router);
 
 app.use('/resources',express.static(path.join(__dirname, 'resources')));
 
+app.get('/booklist' , function(req,res) {
+	res.json([
+		{"name" : "AngularJS in action"},
+		{"name" : "Backbone in action"},
+		{"name" : "Ember in action"}
+	]);
+});
 
-app.get('/books' , function(req,res) {
-//	res.json([
-//	    {"name" : "AngularJS in action"},
-//	    {"name" : "Backbone in action"},
-//	    {"name" : "Ember in action"}
-//	]);
-	setTimeout(function() {
-		res.send('500' , 'error occured');
-	} , 10*1000);
+app.get('/books/:bookid' , function(req,res) {
+	
+	var bookid = req.params.bookid;
+	
+	var bookList = {
+		"1": {"name" : "AngularJS in action"},
+		"2": {"name" : "Backbone in action"},
+		"3": {"name" : "Ember in action"} 
+	};
+	
+	if(bookList[bookid]) {
+	   res.json(bookList[bookid]);
+	} else {
+	   res.send(500 , 'book not found');
+	}
+	
 });
 
 app.listen(app.get('port'), function () {

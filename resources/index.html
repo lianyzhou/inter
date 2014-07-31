@@ -4,15 +4,43 @@
 (function($) {
 	
 	var inter = $.inter();
-	inter.register('books' , {url : '/books' , timeout : 3000});
+	inter.register('books' , {url : '/books/:bookid'});
+	inter.register('booklist' , {url : '/booklist'});
 	
-	inter.getTrans('books').request({
+	
+	var trans = inter.getTrans('books');
+	
+	trans.restful({
+		bookid : 1
+	}).request({
 		a : 1
 	}).success(function(json) {
 		console.log(json);
 	}).error(function(xhr, code , errText) {
 		console.dir(errText);
 	});
-
+	
+	
+	trans.restful({
+		bookid : 2
+	}).request({
+		a : 2
+	}).success(function(json) {
+		console.log(json);
+	}).error(function(xhr, code , errText) {
+		console.dir(errText);
+	});
+	
+	
+	var transBooklist = inter.getTrans("booklist");
+	
+	transBooklist.request({
+		a : 1
+	}).success(function(json) {
+		console.log(json);
+	}).error(function(xhr, code , errText) {
+		console.dir(errText);
+	});
+	
 })(jQuery);
 </script>

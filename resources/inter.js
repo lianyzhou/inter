@@ -20,15 +20,38 @@
 			
 			var ajaxOpts = $.extend({},defaultCfg , map[ns]);
 			
+			var restUrl ;
+			
 			function request(data) {
 				data = data || {};
-				ajaxOpts.data = data;
-				return $.ajax(ajaxOpts);
+				var opts = $.extend({},ajaxOpts);
+				opts.data = data;
+				if(restUrl) {
+					opts.url = restUrl; 
+				}
+				restUrl = null;
+				return $.ajax(opts);
+			}
+			function restful(restParams) {
+				if(!$.isPlainObject(restParams)) {
+					restParams = {};
+				}
+				var originUrl = ajaxOpts.url;
+				var formatUrl = originUrl.replace(/:([\w_]+)/g , function(full,key) {
+					return restParams[key] || full;
+				});
+				if(formatUrl !== originUrl) {
+					restUrl = formatUrl;
+				}
+				return chain;
 			}
 			
-			return {
-				request : request
+			var chain = {
+				request : request,
+				restful : restful
 			};
+	
+			return chain;
 			
 		};
 		
