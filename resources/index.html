@@ -8,9 +8,9 @@
 	inter.register('booklist' , {url : '/booklist'});
 	
 	
-	var trans = inter.getTrans('books');
+	var trans = inter.getAjax('books');
 	
-	trans.restful({
+	trans.resolvePath({
 		bookid : 1
 	}).request({
 		a : 1
@@ -21,7 +21,7 @@
 	});
 	
 	
-	trans.restful({
+	trans.resolvePath({
 		bookid : 2
 	}).request({
 		a : 2
@@ -32,7 +32,7 @@
 	});
 	
 	
-	var transBooklist = inter.getTrans("booklist");
+	var transBooklist = inter.getAjax("booklist");
 	
 	transBooklist.request({
 		a : 1
