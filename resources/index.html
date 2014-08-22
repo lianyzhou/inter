@@ -3,43 +3,50 @@
 <script>
 (function($) {
 	
-	var inter = $.inter();
+	var inter = $.ajaxTrans();
 	inter.register('books' , {url : '/books/:bookid'});
-	inter.register('booklist' , {url : '/booklist'});
-	
+	inter.register('booklist' , {url : '/booklist'
+		//,timeout:1
+	});
 	
 	var trans = inter.getAjax('books');
 	
 	trans.resolvePath({
 		bookid : 1
-	}).request({
+	}).sendRequest({
 		a : 1
 	}).success(function(json) {
 		console.log(json);
 	}).error(function(xhr, code , errText) {
 		console.dir(errText);
+	}).timeout(function() {
+		alert('books 超时了');
 	});
 	
 	
 	trans.resolvePath({
 		bookid : 2
-	}).request({
+	}).sendRequest({
 		a : 2
 	}).success(function(json) {
 		console.log(json);
 	}).error(function(xhr, code , errText) {
 		console.dir(errText);
+	}).timeout(function() {
+		alert('books 超时了');
 	});
 	
 	
 	var transBooklist = inter.getAjax("booklist");
 	
-	transBooklist.request({
+	transBooklist.sendRequest({
 		a : 1
 	}).success(function(json) {
 		console.log(json);
 	}).error(function(xhr, code , errText) {
 		console.dir(errText);
+	}).timeout(function() {
+		alert('booklist 超时了');
 	});
 	
 })(jQuery);
